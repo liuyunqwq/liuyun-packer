@@ -6,7 +6,9 @@
 
 基于开源项目 [PackSquash](https://github.com/ComunidadAylas/PackSquash) 构建。
 
----
+## 📥 下载使用
+
+不想看代码？直接到 **[Releases 发布页](https://github.com/liuyunqwq/liuyun-packer/releases)** 下载 `流云材质包打包器_v1.1.zip`，解压后双击 exe 即可使用，无需安装 Python。
 
 ## ✨ 它能做什么
 
@@ -28,20 +30,14 @@
 
 游戏（Minecraft Java 版）能正常加载使用，但盗素材的人拿不到任何可用资源。
 
-## 📦 仓库内容
-
-```
-流云打包器源码备份.zip   ← 源码备份（含 UI 源码 / 加密配置 / 图标 / 使用说明）
-```
-
-解压后：
+## 📂 仓库结构
 
 | 文件 | 说明 |
 |------|------|
 | `ui_server.py` | 完整源码（Python，内置 Web UI） |
 | `file.toml` | PackSquash 加密配置 |
 | `app_icon.ico` | 程序图标 |
-| `使用说明.txt` | 使用教程 |
+| `使用说明.txt` | 面向使用者的教程 |
 
 ## 🔧 从源码构建
 
