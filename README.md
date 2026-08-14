@@ -8,7 +8,7 @@
 
 ## 📥 下载使用
 
-不想看代码？直接到 **[Releases 发布页](https://github.com/liuyunqwq/liuyun-packer/releases)** 下载 `流云材质包打包器_v1.1.zip`，解压后双击 exe 即可使用，无需安装 Python。
+不想看代码？直接到 **[Releases 发布页](https://github.com/liuyunqwq/liuyun-packer/releases)** 下载 `liuyun-packer-v1.1.zip`，解压后双击 exe 即可使用，无需安装 Python。
 
 ## ✨ 它能做什么
 
