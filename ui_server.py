@@ -59,7 +59,7 @@ def build_toml(src, out, opts):
     ogg_obf = opts.get("ogg_obfuscation", True)
     zip_obf = opts.get("zip_obfuscation", True)
     optifine = opts.get("optifine", True)
-    iters = int(opts.get("iterations", 5))
+    iters = int(opts.get("iterations", 8))
     img_iters = max(10, iters * 2)
     strong = opts.get("preset", "strong") == "strong"
     conformance = "disregard" if (strong or zip_obf) else "balanced"
@@ -70,11 +70,10 @@ def build_toml(src, out, opts):
         "recompress_compressed_files = true",
         f"zip_compression_iterations = {iters}",
         "automatic_minecraft_quirks_detection = true",
-        "work_around_minecraft_quirks = ['grayscale_images_gamma_miscorrection', 'java8_zip_parsing']",
         f"allow_mods = [{toml_str('OptiFine') if optifine else ''}]",
         "skip_pack_icon = false",
         "validate_pack_metadata_file = true",
-        "ignore_system_and_hidden_files = false",
+        "ignore_system_and_hidden_files = true",
         f"zip_spec_conformance_level = '{conformance}'",
         f"size_increasing_zip_obfuscation = {'true' if strong else 'false'}",
         "percentage_of_zip_structures_tuned_for_obfuscation_discretion = 100" if strong else "",
@@ -86,12 +85,6 @@ def build_toml(src, out, opts):
         "transcode_ogg = false",
         "two_pass_vorbis_optimization_and_validation = true" if ogg_obf else "two_pass_vorbis_optimization_and_validation = false",
         f"ogg_obfuscation = {'true' if ogg_obf else 'false'}",
-        "",
-        "['**/*?.{flac,wav}']",
-        "channels = 2",
-        "sampling_frequency = 44100",
-        "target_pitch = 1.5",
-        "target_bitrate_control_metric = 96000",
         "",
         "['**/*.jsonc']",
         "minify_json = false",
@@ -306,8 +299,8 @@ input[type=range]{flex:1;accent-color:var(--acc);height:5px}
    <label class="chk"><input type="checkbox" id="o-of" checked> 兼容 OptiFine</label>
    <div class="range-row">
     <label>压缩力度</label>
-    <input type="range" id="o-iters" min="1" max="10" value="5" oninput="$('itersVal').textContent=this.value">
-    <span class="range-val" id="itersVal">5</span>
+    <input type="range" id="o-iters" min="1" max="10" value="8" oninput="$('itersVal').textContent=this.value">
+    <span class="range-val" id="itersVal">8</span>
    </div>
   </details>
  </div>
