@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+*.exe
+*.zip
+build/
+dist/
+*.spec
+ui_config.json
+crash.log

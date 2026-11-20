@@ -3,18 +3,19 @@
 # spans until the end of the line
 
 # Global options
-pack_directory = "D:\Users\admin\Desktop\jiami\b"
-output_file_path = "D:\Users\admin\Desktop\jiami\b.zip"
-recompress_compressed_files = true
-zip_compression_iterations = 5
+pack_directory = 'C:\path\to\pack'
+output_file_path = 'C:\path\to\output.zip'
+recompress_compressed_files = false
+zip_compression_iterations = 2
 automatic_minecraft_quirks_detection = true
+automatic_asset_types_mask_detection = false
 # The value of this option is ignored due to automatic quirk detection
 # being enabled, but this usually does not matter
 work_around_minecraft_quirks = ['grayscale_images_gamma_miscorrection', 'java8_zip_parsing']
 allow_mods = ['OptiFine']
 skip_pack_icon = false
 validate_pack_metadata_file = true
-ignore_system_and_hidden_files = false
+ignore_system_and_hidden_files = true
 zip_spec_conformance_level = 'disregard'
 # These two take effect ONLY because the conformance level above is 'disregard'
 size_increasing_zip_obfuscation = true
@@ -27,18 +28,17 @@ spooling_buffers_size = 128 # MiB
 
 # Per-file options below
 
-# Ogg files do not get transcoded, but get losslessly optimized and OBFUSCATED
-# (unplayable outside Minecraft even if the ZIP is rebuilt)
+# Ogg files do not get transcoded, and obfuscation is off for playback compatibility.
 ['**/*?.ogg']
 transcode_ogg = false
-two_pass_vorbis_optimization_and_validation = true
-ogg_obfuscation = true
+two_pass_vorbis_optimization_and_validation = false
+ogg_obfuscation = false
 
-# Lossless music files get pitch shifted and compressed with good quality
+# Optional audio transcoding (lossy; disabled in the UI configuration)
 ['**/*?.{flac,wav}']
 channels = 2
 sampling_frequency = 44100
-target_pitch = 1.5
+target_pitch = 1.0
 target_bitrate_control_metric = 96000
 
 # JSON files with comments get prettified and nothing is removed from them
@@ -46,25 +46,26 @@ target_bitrate_control_metric = 96000
 minify_json = false
 delete_bloat_keys = false
 
-# Plain JSON: minify to single line (harder to read/edit) and strip
-# bloat keys (credit, __comment...) that vanilla ignores — removes
-# authorship comments that could leak info
+# Plain JSON: minify while keeping attribution and other keys.
 ['**/*.json']
 minify_json = true
-delete_bloat_keys = true
+delete_bloat_keys = false
 
-# Compress textures losslessly no matter what. Keep them small
+# Preserve visible colors; PNG obfuscation is version-dependent
 ['**/*.png']
-image_data_compression_iterations = 15
+image_data_compression_iterations = 0
 color_quantization_target = 'none'
-maximum_width_and_height = 3072
+maximum_width_and_height = 4096
 skip_alpha_optimizations = true
+downsize_if_single_color = false
 png_obfuscation = true
 
 # Don't minify shaders
 ['**/*.{fsh,vsh}']
 shader_source_transformation_strategy = 'keep_as_is'
 
-# Don't minify properties files
+# Preserve known companion files
 ['**/*.properties']
-minify_properties = false
+force_include = true
+['**/*.rpo']
+force_include = true
